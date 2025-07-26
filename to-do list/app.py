@@ -7,15 +7,15 @@ db = SQLAlchemy(app)
 
 # Definição do modelo de dados
 class Tasks(db.Model): #db.Model é criar modelo de banco de dados
-    id = db.Column(db.Integer, primary_key = True) #db inteiro, chave primaria do bd
-    description = db.Column(db.String(100), unique=True, nullable=False) #usuario digita e a gnt preenche no bd, 100 caracteres, n repete tarefa no bd, deve ter algo preenchido e n vazio
+    id = db.Column(db.Integer, primary_key = True) 
+    description = db.Column(db.String(100), unique=True, nullable=False)
 
 
 # cRud
 @app.route('/')
 def index():
     tasks = Tasks.query.all() #retorna todos os itens salvos na tabela
-    return render_template('index.html', tasks=tasks) #envia esse parâmetro e envia para o template, o html
+    return render_template('index.html', tasks=tasks) 
 
 #Crud
 @app.route('/create', methods=["POST"]) #captura infos do formulario description, cadastra no bd, redireciona p tela inicial 
@@ -53,8 +53,8 @@ def update_Task(task_id):
     return redirect('/')
 
 
-if __name__ == '__main__': #Se eu executar o modulo principal do app,
+if __name__ == '__main__': 
     with app.app_context():
         db.create_all() #criar o bd q ja foi definido no modelo de db.Model
 
-    app.run(debug=True, port=5153) #Então execute
+    app.run(debug=True, port=5153) 
